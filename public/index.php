@@ -4,10 +4,15 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $router = require __DIR__ . '/../routes/web.php';
 
 use Khamdullaevuz\Framework\App;
+use Khamdullaevuz\Framework\Exceptions\InvalidInstanceException;
 use Khamdullaevuz\Framework\Http\Kernel;
 use Khamdullaevuz\Framework\Http\Request;
 
-$kernel = App::make(Kernel::class, $router);
+try {
+    $kernel = App::make(Kernel::class, $router);
+} catch (InvalidInstanceException $e) {
+    die($e->getMessage());
+}
 
 $response = $kernel->handle(
     Request::capture()
