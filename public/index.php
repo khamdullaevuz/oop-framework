@@ -7,12 +7,7 @@ use Khamdullaevuz\Framework\App;
 use Khamdullaevuz\Framework\Http\Kernel;
 use Khamdullaevuz\Framework\Http\Request;
 
-try {
-    $kernel = App::make(Kernel::class, $router);
-} catch (Exception $e) {
-    echo $e->getMessage();
-    die;
-}
+$kernel = App::make(Kernel::class, $router);
 
 $response = $kernel->handle(
     Request::capture()
