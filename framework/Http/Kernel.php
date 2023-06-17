@@ -2,7 +2,9 @@
 
 namespace Khamdullaevuz\Framework\Http;
 
-class Kernel
+use Khamdullaevuz\Framework\Interfaces\KernelInterface;
+
+class Kernel implements KernelInterface
 {
     public function __construct(
         public readonly Router $router

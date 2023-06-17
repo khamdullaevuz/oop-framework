@@ -2,10 +2,21 @@
 
 namespace Khamdullaevuz\Framework;
 
+use Exception;
+use Khamdullaevuz\Framework\Interfaces\KernelInterface;
+
 class App
 {
-    public static function make(string $object, ...$params): object
+    /**
+     * @throws Exception
+     */
+    public static function make(string $object, ...$params): KernelInterface
     {
-        return new $object(...$params);
+        $instance = new $object(...$params);
+        if(!$instance instanceof KernelInterface) {
+            throw new Exception('Object must be instance of KernelInterface');
+        }
+
+        return $instance;
     }
 }
